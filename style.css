@@ -68,3 +68,27 @@ i:hover {
     height: 90px;
     width: 190px;
 }
+
+#equals:hover {
+    background-color: rgb(104, 223, 104);
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+
+#operator:hover {
+    background-color: aquamarine;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+
+#digit:hover {
+    background-color: rgb(242, 245, 77);
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+
+#clear:hover {
+    background-color: rgb(245, 113, 108);
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
