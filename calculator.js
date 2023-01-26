@@ -4,11 +4,6 @@ let displayValue = null;
 let operator = null;
 let num1 = 0;
 let num2 = 0;
-let activeAdd = false;
-let activeSubtract = false;
-let activePercent = false;
-let activeMultiply = false;
-let activeDivide = false;
 let activeOperator = false;
 let activeSymbol = false;
 box.textContent = displayValue;
@@ -46,20 +41,15 @@ function calculate() {
         num2 = box.textContent;
         box.textContent = operate(num1, operator, num2);
         activeSymbol = false;
+    } else {   
+        num1 = box.textContent;
+        activeOperator = true;
+        activeSymbol = true;
     }
-    num1 = box.textContent;
-    activeAdd = true;
-    activeOperator = true;
-    activeSymbol = true;
 }
 
 function reset() {
     box.textContent = null;
-    activeAdd = false;
-    activeSubtract = false;
-    activePercent = false;
-    activeMultiply = false;
-    activeDivide = false;
     activeOperator = false;
     activeSymbol = false;
     num1 = 0;
@@ -90,8 +80,11 @@ buttonArray.forEach(button => button.addEventListener('click', () => {
         operator = '%';
         calculate();
     } else if (button.textContent === '=') {
-        num2 = box.textContent;
-        box.textContent = operate(num1, operator, num2);
+        if (activeSymbol === true) {
+            num2 = box.textContent;
+            box.textContent = operate(num1, operator, num2);
+            activeSymbol = false;
+        }
     } else {
         if (activeOperator === true) {
             box.textContent = null;
