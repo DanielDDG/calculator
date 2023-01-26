@@ -53,21 +53,25 @@ function calculate() {
     activeSymbol = true;
 }
 
+function reset() {
+    box.textContent = null;
+    activeAdd = false;
+    activeSubtract = false;
+    activePercent = false;
+    activeMultiply = false;
+    activeDivide = false;
+    activeOperator = false;
+    activeSymbol = false;
+    num1 = 0;
+    num2 = 0;
+}
+
 buttonArray = Array.from(buttons);
 buttonArray.forEach(button => button.addEventListener('click', () => {
 
 
     if (button.textContent === 'AC') {
-        box.textContent = null;
-        activeAdd = false;
-        activeSubtract = false;
-        activePercent = false;
-        activeMultiply = false;
-        activeDivide = false;
-        activeOperator = false;
-        activeSymbol = false;
-        num1 = 0;
-        num2 = 0;
+        reset();
     } else if (button.textContent === 'C') {
         box.textContent = box.textContent.slice(0, -1);
     } else if (button.textContent === '+') {
