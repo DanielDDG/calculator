@@ -41,6 +41,18 @@ function operate(num1, operator, num2) {
     if (operator === '%') return percent(num1);
 }
 
+function calculate() {
+    if (activeSymbol === true) {
+        num2 = box.textContent;
+        box.textContent = operate(num1, operator, num2);
+        activeSymbol = false;
+    }
+    num1 = box.textContent;
+    activeAdd = true;
+    activeOperator = true;
+    activeSymbol = true;
+}
+
 buttonArray = Array.from(buttons);
 buttonArray.forEach(button => button.addEventListener('click', () => {
 
@@ -59,60 +71,20 @@ buttonArray.forEach(button => button.addEventListener('click', () => {
     } else if (button.textContent === 'C') {
         box.textContent = box.textContent.slice(0, -1);
     } else if (button.textContent === '+') {
-        if (activeSymbol === true) {
-            num2 = box.textContent;
-            box.textContent = operate(num1, operator, num2);
-            activeSymbol = false;
-        }
-        num1 = box.textContent;
         operator = '+';
-        activeAdd = true;
-        activeOperator = true;
-        activeSymbol = true;
+        calculate();
     } else if (button.textContent === '-') {
-        if (activeSymbol === true) {
-            num2 = box.textContent;
-            box.textContent = operate(num1, operator, num2);
-            activeSymbol = false;
-        }
-        num1 = box.textContent;
         operator = '-';
-        activeSubtract = true;
-        activeOperator = true;
-        activeSymbol = true
+        calculate();
     } else if (button.textContent === 'x') {
-        if (activeSymbol === true) {
-            num2 = box.textContent;
-            box.textContent = operate(num1, operator, num2);
-            activeSymbol = false;
-        }
-        num1 = box.textContent;
         operator = 'x';
-        activeMultiply = true;
-        activeOperator = true;
-        activeSymbol = true
+        calculate();
     } else if (button.textContent === '÷') {
-        if (activeSymbol === true) {
-            num2 = box.textContent;
-            box.textContent = operate(num1, operator, num2);
-            activeSymbol = false;
-        }
-        num1 = box.textContent;
         operator = '÷';
-        activeDivide = true;
-        activeOperator = true;
-        activeSymbol = true
+        calculate();
     } else if (button.textContent === '%') {
-        if (activeSymbol === true) {
-            num2 = box.textContent;
-            box.textContent = operate(num1, operator, num2);
-            activeSymbol = false;
-        }
-        num1 = box.textContent;
         operator = '%';
-        activePercent = true;
-        activeOperator = true;
-        activeSymbol = true
+        calculate();
     } else if (button.textContent === '=') {
         num2 = box.textContent;
         box.textContent = operate(num1, operator, num2);
