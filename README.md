@@ -4,20 +4,20 @@ Description of program.
 
 🔗 **Live Preview:** [Link](Repository Link)
 
-### Technologies
+### Languages
 
-* Blank
-* Blank
-* Blank
+* HTML
+* CSS
+* JS
 
 ### Tools
 
-* Blank
-* Blank
-* Blank
+* Visual Studio Code
+* Linux Terminal
+* Git & GitHub
 
 ### Things Learned
 
-* Blank
-* Blank
-* Blank
+* Refined CSS skills.
+* Fluidly apply event listeners for mouse and keyboard.
+* Disabling elements.

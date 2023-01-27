@@ -6,6 +6,8 @@ let activeSymbol = false;
 let operator = null;
 let num1 = 0;
 let num2 = 0;
+let detector = 0;
+box.textContent = 0;
 
 function add(a, b) {
     return (parseFloat(a) + parseFloat(b)).round(3);
@@ -57,16 +59,16 @@ function calculate(value) {
         activeOperator = true;
         activeSymbol = true;
     }
-
 }
 
 function reset() {
     dot.disabled = false;
-    box.textContent = null;
+    box.textContent = 0;
     activeOperator = false;
     activeSymbol = false;
     num1 = 0;
     num2 = 0;
+    detector = 0;
 }
 
 Number.prototype.round = function(n) {
@@ -74,15 +76,12 @@ Number.prototype.round = function(n) {
     return Math.round((this + Number.EPSILON) * d) / d;
 }
 
-// Display error message when dividing by zero.
-
 buttonArray = Array.from(buttons);
 buttonArray.forEach(button => button.addEventListener('click', () => {
 
-    if (box.textContent.includes('.')) {
-        dot.disabled = true;
-    } else {
-        dot.disabled = false;
+    if (detector === 0) {
+        box.textContent = null;
+        detector++;
     }
 
     if (button.textContent === 'AC') reset();
@@ -107,6 +106,9 @@ buttonArray.forEach(button => button.addEventListener('click', () => {
             box.textContent += button.textContent;
         }
     }
+
+    if (box.textContent === 'Infinity') alert('You cannot divide by zero!');
+    box.textContent.includes('.') ? dot.disabled = true : dot.disabled = false;
 }));
 
 document.addEventListener('keydown', (event) => {
