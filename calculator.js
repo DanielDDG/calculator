@@ -42,14 +42,23 @@ function setOperator(value) {
 }
 
 function calculate(value) {
+
     if (activeSymbol === true) {
         num2 = box.textContent;
         box.textContent = operate(num1, operator, num2);
         activeSymbol = false;
     }
-    setOperator(value);
-    activeOperator = true;
-    activeSymbol = true;
+
+    if (value === '%') {
+        num1 = box.textContent;
+        operator = value;
+        box.textContent = operate(num1, operator, num2);
+    } else {
+        setOperator(value);
+        activeOperator = true;
+        activeSymbol = true;
+    }
+
 }
 
 function reset() {
