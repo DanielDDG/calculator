@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll('button');
+const dot = document.getElementById('dot');
 const box = document.querySelector('.box');
 let activeOperator = false;
 let activeSymbol = false;
@@ -7,23 +8,23 @@ let num1 = 0;
 let num2 = 0;
 
 function add(a, b) {
-    return parseInt(a) + parseInt(b);
+    return (parseFloat(a) + parseFloat(b)).round(3);
 }
 
 function subtract(a, b) {
-    return parseInt(a) - parseInt(b);
+    return (parseFloat(a) - parseFloat(b)).round(3);
 }
 
 function multiply(a, b) {
-    return parseInt(a) * parseInt(b);
+    return (parseFloat(a) * parseFloat(b)).round(3);
 }
 
 function divide(a, b) {
-    return parseInt(a) / parseInt(b);
+    return (parseFloat(a) / parseFloat(b)).round(3);
 }
 
 function percent(number) {
-    return number / 100;
+    return (parseFloat(number) / 100).round(3);
 }
 
 function operate(num1, operator, num2) {
@@ -60,6 +61,7 @@ function calculate(value) {
 }
 
 function reset() {
+    dot.disabled = false;
     box.textContent = null;
     activeOperator = false;
     activeSymbol = false;
@@ -67,14 +69,21 @@ function reset() {
     num2 = 0;
 }
 
-// Round answers with long decimals.
+Number.prototype.round = function(n) {
+    const d = Math.pow(10, n);
+    return Math.round((this + Number.EPSILON) * d) / d;
+}
+
 // Display error message when dividing by zero.
-// Let users input and get decimals.
-// Add a backspace button that serves as C.
-// Add full keyboard support.
 
 buttonArray = Array.from(buttons);
 buttonArray.forEach(button => button.addEventListener('click', () => {
+
+    if (box.textContent.includes('.')) {
+        dot.disabled = true;
+    } else {
+        dot.disabled = false;
+    }
 
     if (button.textContent === 'AC') reset();
     else if (button.textContent === 'C') {box.textContent = box.textContent.slice(0, -1);} 
